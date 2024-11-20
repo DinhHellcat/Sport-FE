@@ -7,6 +7,7 @@ const apiClient = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: false,
 });
 
 export const login = async (credentials) => {
@@ -28,3 +29,5 @@ export const register = async (userDetails) => {
     throw error;
   }
 };
+
+export default apiClient;
