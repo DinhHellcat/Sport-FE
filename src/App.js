@@ -1,9 +1,10 @@
+// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Confirm from "./components/Confirm";
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
+import Confirm from "./components/Auth/Confirm";
 import User from "./components/User";
 
 function App() {

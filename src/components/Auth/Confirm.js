@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { confirmEmail } from "../services/apiService";
+import { confirmEmail } from "../../services/apiService";
 
 const Confirm = () => {
   const [code, setCode] = useState("");

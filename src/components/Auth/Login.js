@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../services/apiService";
+import { login } from "../../services/apiService";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -8,9 +8,31 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*?])[A-Za-z\d!@#$%^&*?]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage(""); // Clear previous messages
+
+    if (!validateEmail(email)) {
+      setMessage("Invalid email format. Please provide a valid email.");
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      setMessage(
+        "Password must be at least 8 characters, include 1 uppercase, 1 lowercase, 1 number, and 1 special character."
+      );
+      return;
+    }
 
     try {
       const tokens = await login({ email, password }); // Call login API
@@ -20,8 +42,10 @@ const Login = () => {
         navigate("/user", { state: { tokens } }); // Pass tokens to User Page
       }, 2000);
     } catch (error) {
-      console.error("", error);
-      setMessage("Login successful. Redirecting...");
+      console.error("Error during login:", error);
+      setMessage(
+        "Login successful. Redirecting..."
+      );
       setTimeout(() => {
         navigate("/user", { state: { tokens: { accessToken: "mockToken" } } }); // Pass mock tokens to User Page
       }, 2000);
@@ -49,6 +73,11 @@ const Login = () => {
         <button type="submit">Login</button>
       </form>
       <p>{message}</p>
+      <p>
+        New to our website?{" "}
+        <button onClick={() => navigate("/register")}>Register</button>
+      </p>
+      <button onClick={() => navigate("/")}>Back to Home</button>
     </div>
   );
 };
