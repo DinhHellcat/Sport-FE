@@ -43,12 +43,9 @@ const Login = () => {
       }, 2000);
     } catch (error) {
       console.error("Error during login:", error);
-      setMessage(
-        "Login successful. Redirecting..."
-      );
-      setTimeout(() => {
-        navigate("/user", { state: { tokens: { accessToken: "mockToken" } } }); // Pass mock tokens to User Page
-      }, 2000);
+      setMessage("An error occurred during login. Please try again later.");
+      // Optionally rethrow the error to handle it in a global error handler
+      // throw error;
     }
   };
 

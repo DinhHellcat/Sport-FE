@@ -22,12 +22,7 @@ const Confirm = () => {
       }, 2000); // Add delay to show success message before navigation
     } catch (error) {
       console.error("Error during email confirmation:", error);
-      setMessage(
-        "Email confirmed successfully (despite CORS error). Redirecting to Home..."
-      );
-      setTimeout(() => {
-        navigate("/"); // Redirect to Home.js even on CORS error
-      }, 2000);
+      setMessage("An error occurred during email confirmation. Please try again later.");
     }
   };
 

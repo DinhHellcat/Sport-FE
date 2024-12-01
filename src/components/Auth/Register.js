@@ -42,20 +42,14 @@ const Register = () => {
 
     try {
       const response = await register({ email, password });
-      console.log("API Response:", response); // Debugging
-      setMessage("Verification code sent to your email. Please confirm.");
-      navigate("/confirm", { state: { email } }); // Pass email to Confirm.js
+      console.log("Registration successful:", response); // Debugging
+      setMessage("Registration successful. Redirecting to login...");
+      setTimeout(() => {
+        navigate("/confirm", { state: { email } });
+      }, 2000);
     } catch (error) {
       console.error("Error during registration:", error);
-
-      if (error.message === "User already exists") {
-        setMessage("This email is already registered. Please log in.");
-      } else {
-        setMessage(
-          "Verification code sent to your email. Please confirm."
-        );
-        navigate("/confirm", { state: { email } });
-      }
+      setMessage("An error occurred during registration. Please try again later.");
     }
   };
 
