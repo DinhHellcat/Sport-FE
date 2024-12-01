@@ -37,6 +37,10 @@ const Login = () => {
     try {
       const tokens = await login({ email, password }); // Call login API
       console.log("Login Successful, Tokens:", tokens); // Debugging
+      // Store tokens in localStorage
+      localStorage.setItem("accessToken", tokens.accessToken);
+      localStorage.setItem("idToken", tokens.idToken);
+      localStorage.setItem("refreshToken", tokens.refreshToken);
       setMessage("Login successful. Redirecting...");
       setTimeout(() => {
         navigate("/user", { state: { tokens } }); // Pass tokens to User Page
