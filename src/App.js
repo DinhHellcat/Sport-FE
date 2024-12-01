@@ -6,6 +6,7 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Confirm from "./components/Auth/Confirm";
 import User from "./components/User";
+import ChangePassword from "./components/Auth/ChangePassword";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/confirm" element={<Confirm />} />
         <Route path="/user" element={<User />} />
+        <Route path="/change-password" element={<ChangePassword />} />
       </Routes>
     </Router>
   );

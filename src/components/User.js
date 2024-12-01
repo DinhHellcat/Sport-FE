@@ -18,7 +18,7 @@ const User = () => {
   };
 
   const handleChangePassword = () => {
-    alert("Change Password - Coming Soon!");
+    navigate("/change-password");
   };
 
   return (

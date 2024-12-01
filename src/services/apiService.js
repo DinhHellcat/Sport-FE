@@ -60,4 +60,29 @@ export const login = async (credentials) => {
   }
 };
 
+// Change Password API call
+export const changePassword = async (oldPassword, newPassword) => {
+  const token = localStorage.getItem('authToken');  // Fetch token from localStorage
+  if (!token) {
+    throw new Error('No access token found.');
+  }
+
+  try {
+    const response = await axios.post(endpoints.auth.changePassword, {
+      oldPassword,
+      newPassword,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`,  // Include token in request header
+      },
+    });
+
+    if (response.status === 200) {
+      return response.data;  // Return response on success
+    }
+    throw new Error('Failed to change password.');
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'Failed to change password.');
+  }
+};
 export default apiClient;
