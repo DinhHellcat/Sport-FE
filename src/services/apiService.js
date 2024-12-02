@@ -85,4 +85,25 @@ export const changePassword = async (oldPassword, newPassword) => {
     throw new Error(error.response?.data?.message || 'Failed to change password.');
   }
 };
+
+export const getProdList = async () => {
+  try {
+    const response = await axios.get(endpoints.prod.list);
+    return response.data; // Return product list on success
+  } catch (error) {
+    console.error("Error fetching product list:", error);
+    throw new Error("Failed to fetch product list.");
+  }
+};
+
+export const getProdDetail = async (id) => {
+  try {
+    const response = await axios.get(endpoints.prod.getById(id));
+    return response.data; // Return product detail on success
+  } catch (error) {
+    console.error("Error fetching product detail:", error);
+    throw new Error("Failed to fetch product details.");
+  }
+};
+
 export default apiClient;
