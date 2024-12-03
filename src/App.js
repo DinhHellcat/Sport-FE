@@ -8,7 +8,8 @@ import Confirm from "./components/Auth/Confirm";
 import User from "./components/User";
 import ChangePassword from "./components/Auth/ChangePassword";
 import ProdDetail from "./components/ProdDetail";
-
+import AdminLogin from "./components/Auth/AdminLogin";
+import AdminDashboard from "./components/AdminDashboard";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/user" element={<User />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/prod/:id" element={<ProdDetail />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
 
       </Routes>
     </Router>

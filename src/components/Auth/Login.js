@@ -78,6 +78,10 @@ const Login = () => {
         New to our website?{" "}
         <button onClick={() => navigate("/register")}>Register</button>
       </p>
+      <p>
+        Admin Login?{" "}
+        <button onClick={() => navigate("/admin-login")}>Login as Admin</button>
+      </p>
       <button onClick={() => navigate("/")}>Back to Home</button>
     </div>
   );

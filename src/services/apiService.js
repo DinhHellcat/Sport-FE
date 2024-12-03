@@ -106,4 +106,16 @@ export const getProdDetail = async (id) => {
   }
 };
 
+export const loginAdmin = async (credentials) => {
+  try {
+    const response = await apiClient.post(endpoints.admin.auth.login, credentials);
+    return response.data; // Return the access token on successful login
+  } catch (error) {
+    if (error.response?.data?.message) {
+      throw new Error(error.response.data.message); // Handle API error
+    }
+    throw new Error("Login failed. Please try again.");
+  }
+};
+
 export default apiClient;
