@@ -62,7 +62,7 @@ export const login = async (credentials) => {
 
 // Change Password API call
 export const changePassword = async (oldPassword, newPassword) => {
-  const token = localStorage.getItem('authToken');  // Fetch token from localStorage
+  const token = localStorage.getItem('accessToken');  // Fetch token from localStorage
   if (!token) {
     throw new Error('No access token found.');
   }
