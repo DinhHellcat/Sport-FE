@@ -1,3 +1,4 @@
+// src/components/Auth/Confirm.js
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { confirmEmail } from "../../services/apiService";
@@ -7,19 +8,20 @@ const Confirm = () => {
   const [message, setMessage] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  const { email } = location.state || {}; // Retrieve email from navigation state
+  const { email } = location.state || {};
 
+  // Email Confirm Function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(""); // Clear previous messages
+    setMessage("");
 
     try {
       const response = await confirmEmail({ email, code });
-      console.log("API Response:", response); // Debugging
+      console.log("API Response:", response); 
       setMessage("Email confirmed successfully. Redirecting to Home...");
       setTimeout(() => {
-        navigate("/"); // Redirect to Home.js
-      }, 2000); // Add delay to show success message before navigation
+        navigate("/"); 
+      }, 2000); 
     } catch (error) {
       console.error("Error during email confirmation:", error);
       setMessage("An error occurred during email confirmation. Please try again later.");

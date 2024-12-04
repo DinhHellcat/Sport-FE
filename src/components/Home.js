@@ -7,17 +7,18 @@ const Home = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
+  //Product List Function
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const productList = await getProdList();
-        setProducts(productList);  // Update the state with the product list
+        setProducts(productList);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
 
-    fetchProducts(); // Fetch products when the component mounts
+    fetchProducts();
   }, []);
 
   return (

@@ -26,14 +26,14 @@ export const register = async (userDetails) => {
   try {
     const response = await apiClient.post(endpoints.auth.register, userDetails);
     if (response.status === 200) {
-      return response.data; // Return the response if successful
+      return response.data;
     }
     throw new Error(response.data?.message || "Unexpected error occurred.");
   } catch (error) {
     if (error.response?.data?.message) {
-      throw new Error(error.response.data.message); // Backend-provided error
+      throw new Error(error.response.data.message);
     }
-    throw new Error("No response from server."); // Default fallback error
+    throw new Error("No response from server.");
   }
 };
 
@@ -51,10 +51,10 @@ export const confirmEmail = async (confirmationDetails) => {
 export const login = async (credentials) => {
   try {
     const response = await apiClient.post(endpoints.auth.login, credentials);
-    return response.data; // Return tokens
+    return response.data; 
   } catch (error) {
     if (error.response?.data?.message) {
-      throw new Error(error.response.data.message); // Handle API error
+      throw new Error(error.response.data.message); 
     }
     throw new Error("Login failed. Please try again.");
   }
@@ -62,7 +62,7 @@ export const login = async (credentials) => {
 
 // Change Password API call
 export const changePassword = async (oldPassword, newPassword) => {
-  const token = localStorage.getItem('accessToken');  // Fetch token from localStorage
+  const token = localStorage.getItem('accessToken');  
   if (!token) {
     throw new Error('No access token found.');
   }
@@ -73,12 +73,12 @@ export const changePassword = async (oldPassword, newPassword) => {
       newPassword,
     }, {
       headers: {
-        Authorization: `Bearer ${token}`,  // Include token in request header
+        Authorization: `Bearer ${token}`,  
       },
     });
 
     if (response.status === 200) {
-      return response.data;  // Return response on success
+      return response.data;  
     }
     throw new Error('Failed to change password.');
   } catch (error) {
@@ -86,33 +86,36 @@ export const changePassword = async (oldPassword, newPassword) => {
   }
 };
 
+//Get Product List
 export const getProdList = async () => {
   try {
     const response = await axios.get(endpoints.prod.list);
-    return response.data; // Return product list on success
+    return response.data; 
   } catch (error) {
     console.error("Error fetching product list:", error);
     throw new Error("Failed to fetch product list.");
   }
 };
 
+//Get Product Detail
 export const getProdDetail = async (id) => {
   try {
     const response = await axios.get(endpoints.prod.getById(id));
-    return response.data; // Return product detail on success
+    return response.data; 
   } catch (error) {
     console.error("Error fetching product detail:", error);
     throw new Error("Failed to fetch product details.");
   }
 };
 
+//Admin Login
 export const loginAdmin = async (credentials) => {
   try {
     const response = await apiClient.post(endpoints.admin.auth.login, credentials);
-    return response.data; // Return the access token on successful login
+    return response.data; 
   } catch (error) {
     if (error.response?.data?.message) {
-      throw new Error(error.response.data.message); // Handle API error
+      throw new Error(error.response.data.message); 
     }
     throw new Error("Login failed. Please try again.");
   }

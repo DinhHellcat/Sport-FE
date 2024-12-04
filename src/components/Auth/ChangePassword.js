@@ -1,6 +1,7 @@
+// src/components/Auth/ChangePassword.js
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { changePassword } from '../../services/apiService';  // Assuming the method is in apiService.js
+import { changePassword } from '../../services/apiService';
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState('');
@@ -19,11 +20,9 @@ const ChangePassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Clear previous messages
     setErrorMessage('');
     setSuccessMessage('');
 
-    // Validate passwords
     if (!validatePassword(newPassword)) {
       setErrorMessage('Password must be at least 8 characters, include 1 uppercase, 1 lowercase, 1 number, and 1 special character.');
       return;
@@ -35,10 +34,8 @@ const ChangePassword = () => {
     }
 
     try {
-      // Call the change password API
       await changePassword(oldPassword, newPassword);
       setSuccessMessage('Password changed successfully!');
-      // Redirect to User.js
       navigate("/user");
     } catch (error) {
       setErrorMessage(error.message || 'Something went wrong.');

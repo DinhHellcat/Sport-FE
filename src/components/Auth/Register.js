@@ -1,3 +1,4 @@
+// src/components/Auth/Register.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../services/apiService";
@@ -19,9 +20,10 @@ const Register = () => {
     return passwordRegex.test(password);
   };
 
+  //Register Function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(""); // Clear any previous messages
+    setMessage("");
 
     if (!validateEmail(email)) {
       setMessage("Invalid email format. Please provide a valid email.");
@@ -42,7 +44,7 @@ const Register = () => {
 
     try {
       const response = await register({ email, password });
-      console.log("Registration successful:", response); // Debugging
+      console.log("Registration successful:", response);
       setMessage("Registration successful. Redirecting to login...");
       setTimeout(() => {
         navigate("/confirm", { state: { email } });

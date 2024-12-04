@@ -20,6 +20,9 @@ const endpoints = {
   },
   order: {
     create: `${API_BASE_URL}/order/create`,
+    add: `${API_BASE_URL}/order/add`,
+    delete: `${API_BASE_URL}/order/delete`,
+    update: `${API_BASE_URL}/order/update`,
   },
   prod: {
     getById: (id) => `${API_BASE_URL}/prod/${id}`,

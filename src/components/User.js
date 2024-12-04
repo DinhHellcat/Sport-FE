@@ -6,22 +6,24 @@ import { getProdList } from "../services/apiService";
 const User = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { tokens } = location.state || {}; // Tokens passed from Login
-  const userEmail = tokens?.idToken ? JSON.parse(atob(tokens.idToken.split('.')[1])).email : "Unknown"; // Extract email from ID token
+  const { tokens } = location.state || {}; 
+  const userEmail = tokens?.idToken ? JSON.parse(atob(tokens.idToken.split('.')[1])).email : "Unknown";
   const [products, setProducts] = useState([]);
 
+  //Product List Function
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const productList = await getProdList();
-        setProducts(productList);  // Update the state with the product list
+        setProducts(productList); 
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
-    fetchProducts(); // Fetch products when the component mounts
+    fetchProducts();
   }, []);
 
+  //Sign Out Function
   const handleLogout = () => {
     const confirmation = window.confirm("Are you sure you want to sign out?");
     if (confirmation) {
@@ -31,6 +33,7 @@ const User = () => {
     }
   };
 
+  //Change Password Navigation
   const handleChangePassword = () => {
     navigate("/change-password");
   };

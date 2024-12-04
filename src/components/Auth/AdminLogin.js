@@ -10,16 +10,17 @@ const AdminLogin = () => {
   const navigate = useNavigate();
 
   const validateUsername = (username) => {
-    return username.trim().length > 0; // Basic validation, can be enhanced
+    return username.trim().length > 0;
   };
 
   const validatePassword = (password) => {
-    return password.trim().length >= 6; // Ensure password is at least 6 characters
+    return password.trim().length >= 6; 
   };
 
+  //Admin Login Function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(""); // Clear previous messages
+    setMessage(""); 
 
     if (!validateUsername(username)) {
       setMessage("Username cannot be empty.");
@@ -33,12 +34,10 @@ const AdminLogin = () => {
 
     try {
       const response = await loginAdmin({ username, password });
-      const { accessToken } = response; // Get the access token
-      // Save token to localStorage
+      const { accessToken } = response; 
+      console.log("Admin Login Successful, Access Tokens:", accessToken); //token
       localStorage.setItem("adminAccessToken", accessToken);
       setMessage("Login successful. Redirecting...");
-
-      // Redirect to AdminDashboard after successful login
       setTimeout(() => {
         navigate("/admin-dashboard");
       }, 2000);

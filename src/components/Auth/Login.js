@@ -1,3 +1,4 @@
+// src/components/Auth/Login.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../services/apiService";
@@ -18,9 +19,10 @@ const Login = () => {
     return passwordRegex.test(password);
   };
 
+  //Login Function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(""); // Clear previous messages
+    setMessage("");
 
     if (!validateEmail(email)) {
       setMessage("Invalid email format. Please provide a valid email.");
@@ -35,21 +37,18 @@ const Login = () => {
     }
 
     try {
-      const tokens = await login({ email, password }); // Call login API
-      console.log("Login Successful, Tokens:", tokens); // Debugging
-      // Store tokens in localStorage
+      const tokens = await login({ email, password }); 
+      console.log("Login Successful, Tokens:", tokens); //token
       localStorage.setItem("accessToken", tokens.accessToken);
       localStorage.setItem("idToken", tokens.idToken);
       localStorage.setItem("refreshToken", tokens.refreshToken);
       setMessage("Login successful. Redirecting...");
       setTimeout(() => {
-        navigate("/user", { state: { tokens } }); // Pass tokens to User Page
+        navigate("/user", { state: { tokens } });
       }, 2000);
     } catch (error) {
       console.error("Error during login:", error);
       setMessage("An error occurred during login. Please try again later.");
-      // Optionally rethrow the error to handle it in a global error handler
-      // throw error;
     }
   };
 
