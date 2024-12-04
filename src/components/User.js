@@ -10,20 +10,21 @@ const User = () => {
   const userEmail = tokens?.idToken ? JSON.parse(atob(tokens.idToken.split('.')[1])).email : "Unknown";
   const [products, setProducts] = useState([]);
 
-  //Product List Function
+  // Fetch Product List
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const productList = await getProdList();
-        setProducts(productList); 
+        setProducts(productList);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
+
     fetchProducts();
   }, []);
 
-  //Sign Out Function
+  // Sign Out Function
   const handleLogout = () => {
     const confirmation = window.confirm("Are you sure you want to sign out?");
     if (confirmation) {
@@ -35,7 +36,7 @@ const User = () => {
     }
   };
 
-  //Change Password Navigation
+  // Change Password Navigation
   const handleChangePassword = () => {
     navigate("/change-password");
   };
@@ -59,16 +60,14 @@ const User = () => {
           <div key={product.id} style={{ border: "1px solid #ccc", padding: "1rem", width: "200px" }}>
             <img src={product.picture} alt={product.name} style={{ width: "100%" }} />
             <h3>{product.name}</h3>
+            <p>{product.category}</p>
+            <p>{product.description}</p>
+            <p>Price: ${product.price}</p>
+            <p>In Stock: {product.quantity}</p>
             <button onClick={() => navigate(`/prod/${product.id}`)}>View Details</button>
           </div>
         ))}
       </main>
-      {/* <div style={{ textAlign: "center", margin: "1rem" }}>
-        <button>Add More</button>
-      </div> */}
-      {/* <footer style={{ textAlign: "center", padding: "1rem", background: "#f8f8f8" }}>
-        <p>Footer</p>
-      </footer> */}
     </div>
   );
 };

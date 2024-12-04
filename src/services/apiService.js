@@ -86,11 +86,23 @@ export const changePassword = async (oldPassword, newPassword) => {
   }
 };
 
-//Get Product List
+// Get Product List
 export const getProdList = async () => {
   try {
     const response = await axios.get(endpoints.prod.list);
-    return response.data; 
+    
+    // Processing the response data to map DynamoDB's format to frontend format
+    const products = response.data.map(item => ({
+      id: item.id.S,  // DynamoDB 'S' type -> String
+      name: item.title.S,  // DynamoDB 'S' type -> String
+      category: item.category.S,  // DynamoDB 'S' type -> String
+      description: item.description.S,  // DynamoDB 'S' type -> String
+      picture: item.images.SS[0],  // DynamoDB 'SS' type -> Array of Strings (get the first image)
+      price: parseFloat(item.price.N),  // DynamoDB 'N' type -> Number
+      quantity: parseInt(item.quantity.N),  // DynamoDB 'N' type -> Integer
+    }));
+
+    return products; 
   } catch (error) {
     console.error("Error fetching product list:", error);
     throw new Error("Failed to fetch product list.");

@@ -37,6 +37,10 @@ const Home = () => {
           <div key={product.id} style={{ border: "1px solid #ccc", padding: "1rem", width: "200px" }}>
             <img src={product.picture} alt={product.name} style={{ width: "100%" }} />
             <h3>{product.name}</h3>
+            <p>{product.category}</p>
+            <p>{product.description}</p>
+            <p>Price: ${product.price}</p>
+            <p>In Stock: {product.quantity}</p>
             <button onClick={() => navigate(`/prod/${product.id}`)}>View Details</button>
           </div>
         ))}
