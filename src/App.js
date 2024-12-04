@@ -10,6 +10,7 @@ import ChangePassword from "./components/Auth/ChangePassword";
 import ProdDetail from "./components/ProdDetail";
 import AdminLogin from "./components/Auth/AdminLogin";
 import AdminDashboard from "./components/AdminDashboard";
+import CreateProd from "./components/CreateProd";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/prod/:id" element={<ProdDetail />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/create-prod" element={<CreateProd />} />
 
       </Routes>
     </Router>

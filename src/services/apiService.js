@@ -133,4 +133,32 @@ export const loginAdmin = async (credentials) => {
   }
 };
 
+// Create Product
+export const createProd = async (productDetails) => {
+  const adminAccessToken = localStorage.getItem("adminAccessToken"); // Retrieve admin token from localStorage
+  
+  if (!adminAccessToken) {
+    throw new Error("Admin not authorized. Please log in.");
+  }
+
+  try {
+    const response = await apiClient.post(
+      endpoints.admin.prod.create, // Endpoint to create product
+      productDetails, // Product details (including name, price, images, etc.)
+      {
+        headers: {
+          Authorization: `Bearer ${adminAccessToken}`, // Include admin token in the Authorization header
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      return response.data; // Return created product data on success
+    }
+    throw new Error(response.data?.message || "Failed to create product.");
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Failed to create product.");
+  }
+};
+
 export default apiClient;

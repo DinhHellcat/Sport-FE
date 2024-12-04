@@ -1,9 +1,11 @@
 // src/components/AdminDashboard.js
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import { getProdList } from "../services/apiService";
 
 const AdminDashboard = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate(); // Hook for navigation
 
   // Fetch Product List
   useEffect(() => {
@@ -19,9 +21,30 @@ const AdminDashboard = () => {
     fetchProducts();
   }, []);
 
+  // Handle Create Product button click
+  const handleCreateProduct = () => {
+    navigate("/create-prod"); // Navigate to CreateProd page
+  };
+
   return (
     <div>
       <h1>Admin Dashboard</h1>
+      <button
+        style={{
+          position: "absolute",
+          top: "20px",
+          right: "20px",
+          padding: "10px 20px",
+          backgroundColor: "#4CAF50",
+          color: "white",
+          border: "none",
+          cursor: "pointer",
+        }}
+        onClick={handleCreateProduct}
+      >
+        Create
+      </button>
+
       <table style={{ width: "100%", marginTop: "2rem", border: "1px solid #ccc" }}>
         <thead>
           <tr>
