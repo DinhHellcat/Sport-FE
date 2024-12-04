@@ -24,7 +24,7 @@ const Confirm = () => {
       }, 2000); 
     } catch (error) {
       console.error("Error during email confirmation:", error);
-      setMessage("An error occurred during email confirmation. Please try again later.");
+      setMessage(error.message);    
     }
   };
 

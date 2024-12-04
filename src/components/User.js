@@ -28,7 +28,9 @@ const User = () => {
     const confirmation = window.confirm("Are you sure you want to sign out?");
     if (confirmation) {
       console.log("Logging out...");
-      localStorage.removeItem('authToken');
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('idToken');
+      localStorage.removeItem('refreshToken');
       navigate("/");
     }
   };

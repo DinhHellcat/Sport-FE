@@ -43,7 +43,7 @@ const AdminLogin = () => {
       }, 2000);
     } catch (error) {
       console.error("Error during admin login:", error);
-      setMessage("An error occurred during login. Please try again later.");
+      setMessage(error.message);
     }
   };
 

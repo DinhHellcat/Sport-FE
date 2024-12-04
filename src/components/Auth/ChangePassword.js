@@ -39,6 +39,7 @@ const ChangePassword = () => {
       navigate("/user");
     } catch (error) {
       setErrorMessage(error.message || 'Something went wrong.');
+      // setMessage(error.message);
     }
   };
 

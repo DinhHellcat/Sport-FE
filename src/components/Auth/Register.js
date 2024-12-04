@@ -51,7 +51,7 @@ const Register = () => {
       }, 2000);
     } catch (error) {
       console.error("Error during registration:", error);
-      setMessage("An error occurred during registration. Please try again later.");
+      setMessage(error.message);    
     }
   };
 
