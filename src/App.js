@@ -1,16 +1,18 @@
 // src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./components/View/Home";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Confirm from "./components/Auth/Confirm";
-import User from "./components/User";
+import User from "./components/View/User";
 import ChangePassword from "./components/Auth/ChangePassword";
-import ProdDetail from "./components/ProdDetail";
-import AdminLogin from "./components/Auth/AdminLogin";
-import AdminDashboard from "./components/AdminDashboard";
-import CreateProd from "./components/CreateProd";
+import ProdDetail from "./components/View/ProdDetail";
+import AdminLogin from "./components/Admin/AdminLogin";
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import CreateProd from "./components/Admin/CreateProd";
+
+import './style/Authstyle.css';
 
 function App() {
   return (

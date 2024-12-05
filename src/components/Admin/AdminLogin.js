@@ -17,7 +17,6 @@ const AdminLogin = () => {
     return password.trim().length >= 6; 
   };
 
-  //Admin Login Function
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage(""); 
@@ -35,7 +34,7 @@ const AdminLogin = () => {
     try {
       const response = await loginAdmin({ username, password });
       const { accessToken } = response; 
-      console.log("Admin Login Successful, Access Tokens:", accessToken); //token
+      console.log("Admin Login Successful, Access Tokens:", accessToken);
       localStorage.setItem("adminAccessToken", accessToken);
       setMessage("Login successful. Redirecting...");
       setTimeout(() => {
@@ -48,31 +47,37 @@ const AdminLogin = () => {
   };
 
   return (
-    <div>
-      <h1>Admin Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
+    <div className="admin-login-container">
+      <h1 className="admin-login-title">Admin Login</h1>
+      <form className="admin-login-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <input
+            className="form-input"
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="form-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button className="submit-button" type="submit">Login</button>
       </form>
-      <p>{message}</p>
-      <p>
+      <p className="message">{message}</p>
+      <p className="not-admin">
         Not an admin?{" "}
-        <button onClick={() => navigate("/login")}>Login as User</button>
+        <button className="user-login-button" onClick={() => navigate("/login")}>Login as User</button>
       </p>
-      <button onClick={() => navigate("/")}>Back to Home</button>
+      <button className="back-home-button" onClick={() => navigate("/")}>Back to Home</button>
     </div>
   );
 };

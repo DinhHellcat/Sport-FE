@@ -1,7 +1,7 @@
 // src/components/AdminDashboard.js
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
-import { getProdList } from "../services/apiService";
+import { getProdList } from "../../services/apiService";
 
 const AdminDashboard = () => {
   const [products, setProducts] = useState([]);
@@ -27,25 +27,16 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div>
-      <h1>Admin Dashboard</h1>
+    <div className="admin-dashboard-container">
+      <h1 className="dashboard-title">Admin Dashboard</h1>
       <button
-        style={{
-          position: "absolute",
-          top: "20px",
-          right: "20px",
-          padding: "10px 20px",
-          backgroundColor: "#4CAF50",
-          color: "white",
-          border: "none",
-          cursor: "pointer",
-        }}
+        className="create-button"
         onClick={handleCreateProduct}
       >
         Create
       </button>
 
-      <table style={{ width: "100%", marginTop: "2rem", border: "1px solid #ccc" }}>
+      <table className="product-table">
         <thead>
           <tr>
             <th>Product Name</th>
@@ -65,7 +56,9 @@ const AdminDashboard = () => {
               <td>${product.price}</td>
               <td>{product.quantity}</td>
               <td>
-                <button onClick={() => alert(`View details of ${product.name}`)}>View</button>
+                <button onClick={() => alert(`View details of ${product.name}`)} className="view-button">
+                  View
+                </button>
               </td>
             </tr>
           ))}

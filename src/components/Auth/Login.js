@@ -19,7 +19,7 @@ const Login = () => {
     return passwordRegex.test(password);
   };
 
-  //Login Function
+  // Login Function
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
@@ -37,8 +37,8 @@ const Login = () => {
     }
 
     try {
-      const tokens = await login({ email, password }); 
-      console.log("Login Successful, Tokens:", tokens); //token
+      const tokens = await login({ email, password });
+      console.log("Login Successful, Tokens:", tokens); // token
       localStorage.setItem("accessToken", tokens.accessToken);
       localStorage.setItem("idToken", tokens.idToken);
       localStorage.setItem("refreshToken", tokens.refreshToken);
@@ -53,35 +53,41 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
+    <div className="login-container">
+      <h1 className="login-title">Login</h1>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <input
+            className="form-input"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="form-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button className="submit-button" type="submit">Login</button>
       </form>
-      <p>{message}</p>
-      <p>
+      <p className="message">{message}</p>
+      <p className="register-link">
         New to our website?{" "}
-        <button onClick={() => navigate("/register")}>Register</button>
+        <button className="register-button" onClick={() => navigate("/register")}>Register</button>
       </p>
-      <p>
+      <p className="admin-login-link">
         Admin Login?{" "}
-        <button onClick={() => navigate("/admin-login")}>Login as Admin</button>
+        <button className="admin-login-button" onClick={() => navigate("/admin-login")}>Login as Admin</button>
       </p>
-      <button onClick={() => navigate("/")}>Back to Home</button>
+      <button className="back-home-button" onClick={() => navigate("/")}>Back to Home</button>
     </div>
   );
 };

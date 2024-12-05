@@ -1,7 +1,7 @@
 // src/components/CreateProd.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createProd } from "../services/apiService"; // Import the createProd function
+import { createProd } from "../../services/apiService"; // Import the createProd function
 
 const CreateProd = () => {
   const [productDetails, setProductDetails] = useState({
@@ -44,15 +44,16 @@ const CreateProd = () => {
   };
 
   return (
-    <div>
-      <h1>Create New Product</h1>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", width: "300px" }}>
+    <div className="create-prod-container">
+      <h1 className="create-prod-title">Create New Product</h1>
+      <form onSubmit={handleSubmit} className="create-prod-form">
         <input
           type="text"
           name="name"
           placeholder="Product Name"
           value={productDetails.name}
           onChange={handleInputChange}
+          className="create-prod-input"
           required
         />
         <input
@@ -61,6 +62,7 @@ const CreateProd = () => {
           placeholder="Category"
           value={productDetails.category}
           onChange={handleInputChange}
+          className="create-prod-input"
           required
         />
         <textarea
@@ -68,6 +70,7 @@ const CreateProd = () => {
           placeholder="Description"
           value={productDetails.description}
           onChange={handleInputChange}
+          className="create-prod-textarea"
           required
         />
         <input
@@ -76,6 +79,7 @@ const CreateProd = () => {
           placeholder="Price"
           value={productDetails.price}
           onChange={handleInputChange}
+          className="create-prod-input"
           required
         />
         <input
@@ -84,6 +88,7 @@ const CreateProd = () => {
           placeholder="Quantity"
           value={productDetails.quantity}
           onChange={handleInputChange}
+          className="create-prod-input"
           required
         />
         <textarea
@@ -91,9 +96,10 @@ const CreateProd = () => {
           placeholder="Image URLs (comma separated)"
           value={productDetails.images.join(", ")} // Join array into a string for display
           onChange={handleImagesChange}
+          className="create-prod-textarea"
           required
         />
-        <button type="submit">Create Product</button>
+        <button type="submit" className="create-prod-button">Create Product</button>
       </form>
     </div>
   );

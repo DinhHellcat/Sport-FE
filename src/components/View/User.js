@@ -1,14 +1,18 @@
 // src/components/User.js
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getProdList } from "../services/apiService";
+import { getProdList } from "../../services/apiService";
 
 const User = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { tokens } = location.state || {}; 
-  const userEmail = tokens?.idToken ? JSON.parse(atob(tokens.idToken.split('.')[1])).email : "Unknown";
+  const { state } = useLocation();
+  const { tokens } = state || {}; // Directly extract tokens from location state
+  const userEmail = tokens?.idToken 
+    ? JSON.parse(atob(tokens.idToken.split('.')[1])).email 
+    : "Unknown";
+  
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null); // State for error handling
 
   // Fetch Product List
   useEffect(() => {
@@ -18,11 +22,12 @@ const User = () => {
         setProducts(productList);
       } catch (error) {
         console.error("Error fetching products:", error);
+        setError("Failed to load products. Please try again.");
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [tokens]); // Re-fetch products when tokens change
 
   // Sign Out Function
   const handleLogout = () => {
@@ -42,28 +47,28 @@ const User = () => {
   };
 
   return (
-    <div>
-      <header style={{ display: "flex", justifyContent: "space-between", padding: "1rem" }}>
-        <div>
-          <h2>Logo</h2>
-        </div>
+    <div className="user-container">
+      <header className="user-header">
+        <h2>Logo</h2>
         <div>
           <button onClick={handleChangePassword}>Change Password</button>
           <button onClick={handleLogout}>Logout</button>
         </div>
       </header>
-      <p style={{ textAlign: "center", marginTop: "1rem" }}>
-        Logged in as: <strong>{userEmail}</strong>
-      </p>
-      <main style={{ display: "flex", justifyContent: "center", gap: "1rem", padding: "2rem" }}>
+      
+      <p className="user-email">Logged in as: <strong>{userEmail}</strong></p>
+
+      {error && <div className="error-message">{error}</div>} {/* Display error message if there's one */}
+      
+      <main className="product-list">
         {products.map((product) => (
-          <div key={product.id} style={{ border: "1px solid #ccc", padding: "1rem", width: "200px" }}>
-            <img src={product.picture} alt={product.name} style={{ width: "100%" }} />
-            <h3>{product.name}</h3>
-            <p>{product.category}</p>
-            <p>{product.description}</p>
-            <p>Price: ${product.price}</p>
-            <p>In Stock: {product.quantity}</p>
+          <div key={product.id} className="product-card">
+            <img src={product.picture} alt={product.name} className="product-image" />
+            <h3 className="product-name">{product.name}</h3>
+            <p className="product-category">{product.category}</p>
+            <p className="product-description">{product.description}</p>
+            <p className="product-price">Price: ${product.price}</p>
+            <p className="product-quantity">In Stock: {product.quantity}</p>
             <button onClick={() => navigate(`/prod/${product.id}`)}>View Details</button>
           </div>
         ))}

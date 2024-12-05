@@ -20,7 +20,7 @@ const Register = () => {
     return passwordRegex.test(password);
   };
 
-  //Register Function
+  // Register Function
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
@@ -51,43 +51,52 @@ const Register = () => {
       }, 2000);
     } catch (error) {
       console.error("Error during registration:", error);
-      setMessage(error.message);    
+      setMessage(error.message);
     }
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Re-enter Password"
-          value={reenteredPassword}
-          onChange={(e) => setReenteredPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Register</button>
+    <div className="register-container">
+      <h1 className="register-title">Register</h1>
+      <form className="register-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <input
+            className="form-input"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="form-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="form-input"
+            type="password"
+            placeholder="Re-enter Password"
+            value={reenteredPassword}
+            onChange={(e) => setReenteredPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button className="submit-button" type="submit">Register</button>
       </form>
-      <p>{message}</p>
-      <p>
+      <p className="message">{message}</p>
+      <p className="login-link">
         Already have an account?{" "}
-        <button onClick={() => navigate("/login")}>Login</button>
+        <button className="login-button" onClick={() => navigate("/login")}>Login</button>
       </p>
-      <button onClick={() => navigate("/")}>Back to Home</button>
+      <button className="back-home-button" onClick={() => navigate("/")}>Back to Home</button>
     </div>
   );
 };

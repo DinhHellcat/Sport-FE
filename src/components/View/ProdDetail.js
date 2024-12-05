@@ -1,13 +1,13 @@
 // src/components/ProdDetail.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProdDetail } from "../services/apiService";
+import { getProdDetail } from "../../services/apiService";
 
 const ProdDetail = () => {
   const { id } = useParams(); 
   const [product, setProduct] = useState(null);
 
-  //Product Detail Function
+  // Product Detail Fetch Function
   useEffect(() => {
     const fetchProductDetail = async () => {
       try {
@@ -21,18 +21,24 @@ const ProdDetail = () => {
     fetchProductDetail();
   }, [id]);
 
+  // If the product is still loading, show a loading message
   if (!product) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   return (
-    <div>
-      <h1>{product.name}</h1>
-      <img src={product.picture} alt={product.name} style={{ width: "300px" }} />
-      <p>{product.description}</p>
-      <p>Quantity: {product.quantity}</p>
-      <p>Price: {product.price}</p>
-      <footer style={{ textAlign: "center", padding: "1rem", background: "#f8f8f8" }}>
+    <div className="product-detail-container">
+      <h1 className="product-title">{product.name}</h1>
+      <img
+        src={product.picture}
+        alt={product.name}
+        className="product-image"
+      />
+      <p className="product-description">{product.description}</p>
+      <p className="product-quantity">Quantity: {product.quantity}</p>
+      <p className="product-price">Price: ${product.price}</p>
+
+      <footer className="product-footer">
         <p>Footer</p>
       </footer>
     </div>
