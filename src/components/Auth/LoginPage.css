@@ -1,0 +1,97 @@
+.home-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.home-icon a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.home-icon a:hover {
+    color: #ddd;
+}
+
+
+/* Left Section */
+.left-section {
+    background: linear-gradient(45deg, #3e9f8a, #356697);
+    text-align: center;
+    padding: 20px;
+}
+
+.logo-img {
+    width: 300px;
+    height: auto;
+}
+
+.learn-more-btn {
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.right-section {
+    /* background-color: #f8f9fa; */
+    padding: 50px 30px;
+    border-radius: 10px;
+    margin: auto !important;
+    width: 100%;
+
+}
+
+.login-form {
+    font-family: 'Roboto', sans-serif;
+    padding: 0 100px;
+}
+
+.login-form h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #343a40;
+}
+
+.login-form p {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+.login-form .form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    height: 45px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.login-form .form-control:focus {
+    border-color: #495057;
+    box-shadow: 0 0 4px rgba(73, 80, 87, 0.25);
+}
+
+.forgot-password-link,
+.register-link {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-password-link:hover,
+.register-link:hover {
+    text-decoration: underline;
+}
+
+button.w-100 {
+    background-color: #007bff;
+    border: none;
+    height: 45px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button.w-100:hover {
+    background-color: #0056b3;
+}
