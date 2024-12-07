@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../services/apiService";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import "./LoginPage.css";
+import "../../style/LoginPage.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
