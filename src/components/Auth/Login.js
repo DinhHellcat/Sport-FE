@@ -79,13 +79,13 @@ const Login = () => {
         <button className="submit-button" type="submit">Login</button>
       </form>
       <p className="message">{message}</p>
-      <p className="register-link">
+      <p className="link">
         New to our website?{" "}
-        <button className="register-button" onClick={() => navigate("/register")}>Register</button>
+        <button className="auten-btn" onClick={() => navigate("/register")}>Register</button>
       </p>
-      <p className="admin-login-link">
+      <p className="link">
         Admin Login?{" "}
-        <button className="admin-login-button" onClick={() => navigate("/admin-login")}>Login as Admin</button>
+        <button className="authen-btn" onClick={() => navigate("/admin-login")}>Login as Admin</button>
       </p>
       <button className="back-home-button" onClick={() => navigate("/")}>Back to Home</button>
     </div>

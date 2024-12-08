@@ -35,7 +35,10 @@ const ChangePassword = () => {
     try {
       await changePassword(oldPassword, newPassword);
       setSuccessMessage("Password changed successfully!");
-      navigate("/user"); // Redirect to /user route
+      setTimeout(() => {
+        navigate("/user");
+      }, 2000);
+      // navigate("/user"); // Redirect to /user route
     } catch (error) {
       setErrorMessage(error.message || "Something went wrong.");
     }

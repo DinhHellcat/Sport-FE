@@ -1,4 +1,4 @@
-// src/components/Auth/AdminLogin.js
+// src/components/Admin/AdminLogin.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginAdmin } from "../../services/apiService";
@@ -73,7 +73,7 @@ const AdminLogin = () => {
         <button className="submit-button" type="submit">Login</button>
       </form>
       <p className="message">{message}</p>
-      <p className="not-admin">
+      <p className="link">
         Not an admin?{" "}
         <button className="user-login-button" onClick={() => navigate("/login")}>Login as User</button>
       </p>

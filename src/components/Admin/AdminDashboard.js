@@ -1,4 +1,4 @@
-// src/components/AdminDashboard.js
+// src/components/Admin/AdminDashboard.js
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import { getProdList } from "../../services/apiService";

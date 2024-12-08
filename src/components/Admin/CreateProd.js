@@ -1,4 +1,4 @@
-// src/components/CreateProd.js
+// src/components/Admin/CreateProd.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createProd } from "../../services/apiService"; // Import the createProd function

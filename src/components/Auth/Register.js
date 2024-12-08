@@ -92,11 +92,13 @@ const Register = () => {
         <button className="submit-button" type="submit">Register</button>
       </form>
       <p className="message">{message}</p>
-      <p className="login-link">
+      <p className="link">
         Already have an account?{" "}
         <button className="login-button" onClick={() => navigate("/login")}>Login</button>
       </p>
-      <button className="back-home-button" onClick={() => navigate("/")}>Back to Home</button>
+      <div className="link">
+        <button className="back-home-button" onClick={() => navigate("/")}>Back to Home</button>
+      </div>
     </div>
   );
 };
