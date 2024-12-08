@@ -49,7 +49,7 @@ const User = () => {
   return (
     <div className="user-container">
       <header className="user-header">
-        <h2>Logo</h2>
+        <h1 className="logo">Logo</h1>
         <div>
           <button onClick={handleChangePassword}>Change Password</button>
           <button onClick={handleLogout}>Logout</button>

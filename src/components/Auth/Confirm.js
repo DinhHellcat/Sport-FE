@@ -1,64 +1,49 @@
 // src/components/Auth/Confirm.js
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { confirmEmail } from "../../services/apiService";
+import { useLocation, useNavigate } from "react-router-dom";
 
-class Confirm extends Component {
-  constructor(props) {
-    super(props);
-    const { email } = this.props.location.state || {};
-    this.state = {
-      code: "",
-      message: "",
-      email: email || "",
-    };
-  }
+const Confirm = () => {
+  const [code, setCode] = useState("");
+  const [message, setMessage] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { email } = location.state || {};
 
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, code } = this.state;
-    this.setState({ message: "" });
+    setMessage("");
 
     try {
       const response = await confirmEmail({ email, code });
-      console.log("API Response:", response);
-      this.setState({ message: "Email confirmed successfully. Redirecting to Home..." });
+      console.log("API Response:", response); 
+      setMessage("Email confirmed successfully. Redirecting to Home...");
       setTimeout(() => {
-        this.props.history.push("/");
-      }, 2000);
+        navigate("/"); 
+      }, 2000); 
     } catch (error) {
       console.error("Error during email confirmation:", error);
-      this.setState({ message: error.message });
+      setMessage(error.message);    
     }
   };
 
-  handleChange = (e) => {
-    const { value } = e.target;
-    this.setState({ code: value });
-  };
-
-  render() {
-    const { code, message } = this.state;
-
-    return (
-      <div className="confirm-container">
-        <h1 className="confirm-title">Confirm Email</h1>
-        <form className="confirm-form" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <input
-              className="form-input"
-              type="text"
-              placeholder="Verification Code"
-              value={code}
-              onChange={this.handleChange}
-              required
-            />
-          </div>
-          <button className="submit-button" type="submit">Confirm</button>
-        </form>
-        <p className="message">{message}</p>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="confirm-container">
+      <h1 className="confirm-title">Confirm Email</h1>
+      <form onSubmit={handleSubmit} className="confirm-form">
+        <input
+          className="form-input"
+          type="text"
+          placeholder="Verification Code"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          required
+        />
+        <button className="submit-button" type="submit">Confirm</button>
+      </form>
+      <p>{message}</p>
+    </div>
+  );
+};
 
 export default Confirm;

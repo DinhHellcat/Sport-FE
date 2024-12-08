@@ -26,9 +26,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <header className="home-header">
-        <div className="home-logo">
-          <h2>Logo</h2>
-        </div>
+        <h1 className="logo">Logo</h1>
         <div className="home-auth-buttons">
           <button className="auth-btn" onClick={() => navigate("/login")}>
             Login

@@ -5,7 +5,7 @@ import { createProd } from "../../services/apiService"; // Import the createProd
 
 const CreateProd = () => {
   const [productDetails, setProductDetails] = useState({
-    name: "",
+    title: "",
     category: "",
     description: "",
     price: "",
@@ -46,12 +46,15 @@ const CreateProd = () => {
   return (
     <div className="create-prod-container">
       <h1 className="create-prod-title">Create New Product</h1>
-      <form onSubmit={handleSubmit} className="create-prod-form">
+      <form style={{
+        display: "flex",
+        flexDirection: "column",
+      }} onSubmit={handleSubmit} className="create-prod-form">
         <input
           type="text"
-          name="name"
+          name="title"
           placeholder="Product Name"
-          value={productDetails.name}
+          value={productDetails.title}
           onChange={handleInputChange}
           className="create-prod-input"
           required
